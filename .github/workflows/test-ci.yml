@@ -41,7 +41,7 @@ jobs:
     - name: Publish vuln scan report
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: ${{ steps.scan.output.sarif }}
+        sarif_file: ${{ steps.scan.outputs.sarif }}
         
   
       
