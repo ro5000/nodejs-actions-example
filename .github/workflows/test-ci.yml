@@ -32,7 +32,11 @@ jobs:
       run: |
         docker build --tag ${{ github.repository }}:${GITHUB_SHA::6} .
         docker tag ${{ github.repository }}:${GITHUB_SHA::6} ${{ github.repository }}:latest 
-      
+    - name: Docker vulnerability scan
+      uses: anchore/scan-action@v3
+      id: scan
+      with:
+        image: ${{ github.repository }}:latest
     
         
   
