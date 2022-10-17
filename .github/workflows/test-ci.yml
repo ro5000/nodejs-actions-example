@@ -1,0 +1,31 @@
+---
+
+name: NodeJS CI test
+
+on:
+  push:
+    branches: [ "main", "test*" ]
+    tags: [ "v1.*.*" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+   
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use nodejs
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Install NPM packages
+      run: npm install
+
+    - name: Run test
+      run: npm test
+  
+      
